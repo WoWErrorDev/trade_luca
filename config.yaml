@@ -1,0 +1,50 @@
+mode: paper
+venues:
+  - binance
+  - ibkr
+binance:
+  api_key: ${BINANCE_API_KEY}
+  api_secret: ${BINANCE_API_SECRET}
+  futures_vs_spot: futures
+  symbols_filters:
+    minVolume: 1000000
+    maxSpread: 0.001
+    minNotional: 10
+ibkr:
+  gateway_host: 127.0.0.1
+  gateway_port_paper: 4002
+  gateway_port_live: 4001
+  client_id: 1
+  universe_csv: ibkr_universe.csv
+  fx_pairs:
+    - EURUSD
+    - USDJPY
+    - GBPUSD
+    - AUDUSD
+  fut_roots:
+    - ES
+    - NQ
+    - CL
+    - GC
+risk:
+  risk_per_trade: 0.01
+  max_total_exposure: 1.0
+  max_positions: 20
+  max_exposure_per_symbol: 0.1
+  max_leverage: 3.0
+  kill_switch_dd: 0.2
+scoring:
+  threshold: 60
+rolling_backtest_window: 1h
+timeframes:
+  - 1m
+  - 5m
+  - 1h
+rolling_backtest:
+  window_days: 90
+  min_trades: 20
+  max_drawdown: 0.2
+  min_stability: 0.3
+alerts:
+  telegram_token: ${TELEGRAM_TOKEN}
+  telegram_chat_id: ${TELEGRAM_CHAT_ID}
